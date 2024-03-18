@@ -1,0 +1,192 @@
+.popup {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0;
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__form {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.popup__fieldset {
+  border: 1px solid rgba(0, 0, 0.3);
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 430px;
+  background-color: white;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 40px;
+  height: 40px;
+  background-image: url(../../images/close.svg);
+}
+
+.popup__button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup__header {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2em;
+  color: #1a1b22;
+  width: fit-content;
+  margin: 36px 0 0 36px;
+}
+
+.popup__errors-signup {
+  width: 200px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2em;
+  margin: 17px 115px 8px 115px;
+  color: #ff0000;
+  text-align: center;
+}
+
+.popup__main {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33em;
+  width: 358px;
+  height: 64px;
+  background-color: #2f71e5;
+  margin: 0px 35px 0 35px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  border-radius: 100px;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+}
+
+.popup__main:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.popup__main:disabled {
+  background-color: #e6e8e8;
+  color: #b6bcbf;
+}
+
+.popup__main:disabled:hover {
+  opacity: 1;
+  cursor: default;
+}
+
+.popup__other {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2em;
+  text-align: center;
+  width: 226px;
+  margin: 16px 102px 28px 102px;
+  padding: 0;
+  border: none;
+  background-color: white;
+}
+
+.popup__color {
+  color: #2f71e5;
+}
+
+.popup__color:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.popup__leave {
+  display: none;
+}
+
+/********************** CSS Style for Signup and SignIn popup**********************/
+
+.popup__label {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2em;
+  color: #2f71e5;
+  margin: 22px 0 0 36px;
+}
+
+.popup__input {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #000000;
+  width: 358px;
+  height: 24px;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin: 8px 36px 0 0;
+  padding: 0;
+}
+
+.popup__input::placeholder {
+  opacity: 0.2;
+}
+
+.popup__errors {
+  width: 200px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2em;
+  margin: 3px 0 0 36px;
+  color: #ff0000;
+}
+
+.popup__text {
+  margin: 24px 0 0 28px;
+  font-size: 16px;
+  line-height: 125%;
+  font-weight: 700;
+}
+
+.popup__input_button {
+  margin: 0;
+}
+
+.popup__label_multiple {
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 8px;
+}

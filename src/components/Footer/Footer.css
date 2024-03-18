@@ -1,0 +1,65 @@
+.footer {
+  max-width: 1440px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  margin: 32px 0 26px 106px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375em;
+  color: #b6bcbf;
+}
+
+.footer__right {
+  margin: 30px 66px 26px 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer__link {
+  margin: 0 40px 0 0;
+}
+
+.footer__button {
+  border: none;
+  background-color: #fff;
+  padding: 0;
+  height: fit-content;
+}
+
+.footer__text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33em;
+  color: #1a1b22;
+}
+
+.footer__text:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.footer__github {
+  width: 24px;
+  height: 24px;
+}
+
+.footer__github:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.footer__linkedIn {
+  width: 24px;
+  height: auto;
+}
+
+.footer__linkedIn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

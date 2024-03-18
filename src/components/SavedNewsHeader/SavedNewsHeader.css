@@ -1,0 +1,34 @@
+.saved {
+  margin: 40px 0 0 0;
+}
+
+.saved__container {
+  margin: 0 104px 0 104px;
+}
+
+.saved__title {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.33em;
+  font-weight: 400;
+  color: rgba(26, 27, 34, 0.5);
+}
+
+.saved__header {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 40px;
+  line-height: 1.15em;
+  font-weight: 400;
+  max-width: 530px;
+}
+
+.saved__words {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33em;
+}
+
+.saved__bold {
+  font-weight: 700;
+}

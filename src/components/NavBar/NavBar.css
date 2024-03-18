@@ -1,0 +1,123 @@
+.nav {
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.nav__logo {
+  margin: 30px 0 26px 104px;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2em;
+  user-select: none;
+  /* color: white; */
+}
+
+.nav__logo:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.nav__link {
+  text-decoration: none;
+  list-style-type: none;
+  grid-column: 3/3;
+  grid-row: 1/1;
+  display: flex;
+}
+
+.nav__right {
+  margin: 0 104px 0 0;
+  display: flex;
+}
+
+.nav__button {
+  font-weight: 500;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav__home {
+  height: 80px;
+  width: 68px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+  /* color: white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__home:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.nav__signin {
+  width: 176px;
+  height: 48px;
+  margin: 16px 0 16px 34px;
+  border-radius: 100px;
+  /* color: inherit; */
+  color: white;
+}
+
+.nav__signin:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.nav__articles {
+  height: 80px;
+  width: 178px;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 44px;
+}
+
+.nav__articles:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.nav__logout-button {
+  display: flex;
+  border-radius: 100px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  margin: 19px 0 0 32px;
+  background-color: transparent;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33em;
+  color: inherit;
+  padding: 0 19px 0 19px;
+}
+
+.nav__logout-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.nav__logout-image {
+  margin: 0 0 0 5px;
+  width: 24px;
+  height: 24px;
+}

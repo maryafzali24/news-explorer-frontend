@@ -1,28 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NewsCard.css";
 
 const NewsCard = ({
   card,
   isLoggedIn,
-  // handleBook,
+  handleBook,
   isBooked,
-  // handleSignupClick,
-  // handleDeleteClick,
-  // newsCards,
-  // setNewsCards,
+  handleSignupClick,
+  handleDeleteClick,
+  newsCards,
+  setNewsCards,
 }) => {
-  const [isSaved, setIsSaved] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
 
-  // // isSaved state is updated based on changes to the newsCards, and allowing the component to reflect whether the current card has already been saved.
-  // useEffect(() => {
-  //   if (newsCards.some((c) => c.link === card.url || c.link === card.link)) {
-  //     setIsSaved(true);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [newsCards]);
+  // isSaved state is updated based on changes to the newsCards, and allowing the component to reflect whether the current card has already been saved.
+  useEffect(() => {
+    if (newsCards.some((c) => c.link === card.url || c.link === card.link)) {
+      setIsSaved(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newsCards]);
 
   const onEnter = () => {
     setIsHovered(true);
@@ -33,14 +33,14 @@ const NewsCard = ({
   };
 
   const OnBookClick = () => {
-    // handleBook(card, isSaved);
+    handleBook(card, isSaved);
     setIsSaved(!isSaved);
   };
-  // const handleDelete = () => {
-  //   setIsVisible(false);
-  //   handleDeleteClick(card._id, card);
-  //   setNewsCards(newsCards.filter((c) => c._id !== card._id));
-  // };
+  const handleDelete = () => {
+    setIsVisible(false);
+    handleDeleteClick(card._id, card);
+    setNewsCards(newsCards.filter((c) => c._id !== card._id));
+  };
 
   const renderSaveButton = () => {
     if (isBooked) {
@@ -51,8 +51,7 @@ const NewsCard = ({
               isHovered ? "card__popout-active" : "card__popout-inactive"
             }`}
           >
-            keyword
-            {/* {card.keyword} */}
+            {card.keyword}
           </p>
           <p
             className={`card__popout ${
@@ -65,7 +64,7 @@ const NewsCard = ({
             className="card__delete"
             onMouseEnter={onEnter}
             onMouseLeave={onLeave}
-            // onClick={handleDelete}
+            onClick={handleDelete}
           />
         </>
       );
@@ -81,7 +80,7 @@ const NewsCard = ({
           }`}
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}
-          onClick={isLoggedIn ? OnBookClick : null}
+          onClick={isLoggedIn ? OnBookClick : handleSignupClick}
         />
       );
     }

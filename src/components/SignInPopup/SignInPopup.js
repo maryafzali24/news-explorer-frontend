@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 const SignInPopup = ({
   hanldeClosePopup,
   handleOutClick,
+  handleLogin,
   handleSignupClick,
   isLoading,
   errorMessage,
@@ -21,13 +22,10 @@ const SignInPopup = ({
     formState: { errors, isValid },
   } = useForm();
 
-  // const onSubmit = ({ email, password }) => {
-  //   handleLogin(email, password);
-  // };
-  const onSubmit = (data) => {
-    console.log(data);
-    hanldeClosePopup();
+  const onSubmit = ({ email, password }) => {
+    handleLogin(email, password);
   };
+
   return (
     <PopupWithForm
       title="Sign in"

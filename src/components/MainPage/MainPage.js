@@ -7,11 +7,11 @@ const MainPage = ({
   handleSearchSubmit,
   isLoggedIn,
   onLogOut,
-  // handleSignupClick,
+  handleSignupClick,
   activeSearch,
   cards,
   isSearchLoading,
-  // handleBook,
+  handleBook,
   updateKeyword,
 }) => {
   return (
@@ -28,8 +28,8 @@ const MainPage = ({
           cards={cards}
           isLoading={isSearchLoading}
           isLoggedIn={isLoggedIn}
-          // handleBook={handleBook}
-          // handleSignupClick={handleSignupClick}
+          handleBook={handleBook}
+          handleSignupClick={handleSignupClick}
         />
       )}
       <About />

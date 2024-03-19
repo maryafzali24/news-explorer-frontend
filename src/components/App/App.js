@@ -206,6 +206,7 @@ function App() {
             <SignInPopup
               hanldeClosePopup={handleClosePopup}
               handleOutClick={handleOutClick}
+              handleLogin={handleLogin}
               handleSignupClick={handleSignupClick}
               isLoading={isLoading}
               errorMessage={errorMessage}

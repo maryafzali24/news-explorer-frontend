@@ -8,7 +8,7 @@ const NewsCard = ({
   handleBook,
   isBooked,
   handleSignupClick,
-  handleDeleteClick,
+  handleDeleteArticle,
   newsCards,
   setNewsCards,
 }) => {
@@ -38,7 +38,7 @@ const NewsCard = ({
   };
   const handleDelete = () => {
     setIsVisible(false);
-    handleDeleteClick(card._id, card);
+    handleDeleteArticle(card._id, card);
     setNewsCards(newsCards.filter((c) => c._id !== card._id));
   };
 

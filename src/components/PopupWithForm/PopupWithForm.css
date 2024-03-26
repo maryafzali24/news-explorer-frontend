@@ -33,6 +33,7 @@
 }
 
 .popup__button {
+  background-image: url(../../images/close.svg);
   background-color: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
@@ -41,7 +42,6 @@
   right: -35px;
   width: 40px;
   height: 40px;
-  background-image: url(../../images/close.svg);
 }
 
 .popup__button:hover {
@@ -133,6 +133,54 @@
   display: none;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup {
+    /* max-width: 320px;
+    height: 560px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    align-items: normal;
+  }
+
+  .popup__fieldset {
+    width: 320px;
+    height: 560px;
+    margin-top: 56px;
+    /* background-color: rgba(26, 27, 34, 1); */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: none;
+    display: flex;
+    border-radius: 0px;
+  }
+  .popup__button {
+    width: 24px;
+    height: 24px;
+    top: -40px;
+    right: 16px;
+    background-size: 100%;
+  }
+  .popup__header {
+    margin: 30px 0 0 17px;
+  }
+  .popup__errors-signup {
+    width: 288px;
+    margin: 17px 16px 8px 16px;
+  }
+  .popup__main {
+    width: 288px;
+    height: 44px;
+    margin: 6px 16px 16px 16px;
+  }
+  .popup__other {
+    /* width: 226px;
+    height: 20px; */
+    /* margin: 16px 31px 0 31px; */
+    margin: 16px auto 0 auto;
+  }
+}
+
 /********************** CSS Style for Signup and SignIn popup**********************/
 
 .popup__label {
@@ -181,7 +229,7 @@
   font-weight: 700;
 }
 
-.popup__input_button {
+/* .popup__input_button {
   margin: 0;
 }
 
@@ -189,4 +237,28 @@
   font-size: 16px;
   font-weight: 700;
   margin-left: 8px;
+} */
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__label {
+    width: 100px;
+    margin: 24px 0 0 16px;
+  }
+
+  .popup__input {
+    width: 288px;
+    margin: 8px 16px 0 0;
+  }
+
+  .popup__errors {
+    margin: 3px 0 0 16px;
+  }
+
+  .popup__text {
+    margin: 24px 0 0 16px;
+  }
+
+  .popup__inputs_container {
+    margin: 14px 0 0 16px;
+  }
 }

@@ -1,4 +1,4 @@
-import authorImage from "../../images/authorImage.jpg";
+import authorImage from "../../images/author.jpeg";
 import "./About.css";
 
 const About = () => {
@@ -8,10 +8,9 @@ const About = () => {
       <div className="about__container">
         <h2 className="about__ttile">About the author</h2>
         <p className="about__info">
-          This block describes the project author. Here you should indicate your
-          name, what you do, and which development technologies you know. You
-          can also talk about your experience with Practicum, what you learned
-          there, and how you can help potential customers.
+          Hi, My name is Maryam Afzali, I'm full stack software engineer
+          proficient in JavaScript, HTML, CSS, Node, Express, and React. I
+          transitioned from financial background to web development.
         </p>
       </div>
     </section>

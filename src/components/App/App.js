@@ -7,6 +7,7 @@ import SignInPopup from "../SignInPopup/SignInPopup";
 import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNews from "../SavedNews/SavedNews";
+import { MobileMenu } from "../MobileMenu/MobileMenu";
 import { getNews } from "../../utils/newsApi";
 import { getItems, saveArticle, removeArticle } from "../../utils/api";
 import { authorize, checkToken } from "../../utils/auth";
@@ -79,6 +80,10 @@ function App() {
     setActivePopup("signup");
   };
 
+  const handleMobileClick = () => {
+    setActivePopup("mobile");
+  };
+
   const handleOutClick = (evt) => {
     if (evt.target === evt.currentTarget) {
       handleClosePopup();
@@ -92,16 +97,20 @@ function App() {
   const handleSearchSubmit = (input) => {
     setActiveSearch(true);
     setIsSearchLoading(true);
-    getNews(input)
-      .then((data) => {
-        setNewsCards(data.news);
-      })
-      .then(() => {
-        setIsSearchLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    // Simulate fetching news data
+    setTimeout(() => {
+      getItems()
+        .then((data) => {
+          // Assuming data is an array of news cards
+          setNewsCards(data.flat()); // Flatten the array of arrays
+          setIsSearchLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching news:", error);
+          setIsSearchLoading(false);
+        });
+    }, 1000); // Adjust the delay time as needed
   };
 
   useEffect(() => {
@@ -136,7 +145,7 @@ function App() {
     let article = savedCards.find((c) => c.link === card.url);
 
     if (article !== undefined) {
-      handleDeleteClick(article._id, card);
+      handleDeleteArticle(article._id, card);
     }
   };
 
@@ -144,13 +153,18 @@ function App() {
     isSaved ? checkDelete(card) : checkDuplicate(card);
   };
 
-  const handleDeleteClick = (id, card) => {
-    removeArticle(id);
-    const updatedSavedCards = savedCards.filter(
-      (c) => c.link !== card.link && c.link !== card.url
-    );
-    setSavedCards(updatedSavedCards);
+  // Function to handle article removal
+  const handleDeleteArticle = (articleId) => {
+    removeArticle(articleId, savedCards)
+      .then((updatedArticles) => {
+        setSavedCards(updatedArticles);
+        console.log("Article removed successfully");
+      })
+      .catch((error) => {
+        console.error("Error removing article:", error);
+      });
   };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <ActivePopupContext.Provider value={activePopup}>
@@ -171,6 +185,7 @@ function App() {
                   isSearchLoading={isSearchLoading}
                   handleBook={handleBook}
                   updateKeyword={updateKeyword}
+                  handleMobileClick={handleMobileClick}
                 />
               }
             />
@@ -184,7 +199,7 @@ function App() {
                     onLogOut={handleLogout}
                     newsCards={savedCards}
                     setNewsCards={setSavedCards}
-                    handleDeleteClick={handleDeleteClick}
+                    handleDeleteArticle={handleDeleteArticle}
                   />
                 </ProtectedRoute>
               }
@@ -219,6 +234,15 @@ function App() {
               handleOutClick={handleOutClick}
               handleLoginClick={handleSignInClick}
             ></ConfirmationPopup>
+          )}
+          {activePopup === "mobile" && (
+            <MobileMenu
+              onSignInClick={handleSignInClick}
+              isLoggedIn={isLoggedIn}
+              handleLogout={handleLogout}
+              handleClosePopup={handleClosePopup}
+              handleOutClick={handleOutClick}
+            />
           )}
         </SavedCardsContext.Provider>
       </ActivePopupContext.Provider>

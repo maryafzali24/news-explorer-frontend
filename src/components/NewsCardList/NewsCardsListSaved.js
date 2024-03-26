@@ -6,7 +6,7 @@ const NewsCardListSaved = ({
   isLoggedIn,
   newsCards,
   setNewsCards,
-  handleDeleteClick,
+  handleDeleteArticle,
 }) => {
   // const [newsCards, setNewsCards] = useState([]);
 
@@ -32,7 +32,7 @@ const NewsCardListSaved = ({
             key={Math.random()}
             isLoggedIn={isLoggedIn}
             isBooked={true}
-            handleDeleteClick={handleDeleteClick}
+            handleDeleteArticle={handleDeleteArticle}
             newsCards={newsCards}
             setNewsCards={setNewsCards}
           />

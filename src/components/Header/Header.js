@@ -9,6 +9,9 @@ const Header = ({
   isLoggedIn,
   onLogOut,
   updateKeyword,
+  handleMobileClick,
+  theme,
+  isHomeSctive,
 }) => {
   return (
     <div className="header">
@@ -16,6 +19,9 @@ const Header = ({
         onSignInClick={onSignInClick}
         isLoggedIn={isLoggedIn}
         onLogOut={onLogOut}
+        handleMobileClick={handleMobileClick}
+        theme={theme}
+        isHomeActive={isHomeSctive}
       />
       <Search
         handleSearchSubmit={handleSearchSubmit}

@@ -8,7 +8,7 @@ const SavedNews = ({
   onLogOut,
   newsCards,
   setNewsCards,
-  handleDeleteClick,
+  handleDeleteArticle,
 }) => {
   return (
     <>
@@ -21,7 +21,7 @@ const SavedNews = ({
         isLoggedIn={isLoggedIn}
         newsCards={newsCards}
         setNewsCards={setNewsCards}
-        handleDeleteClick={handleDeleteClick}
+        handleDeleteArticle={handleDeleteArticle}
       />
     </>
   );

@@ -60,31 +60,30 @@ export function saveArticle(card) {
     }
   });
 }
-
-export function removeArticle(id) {
+/**
+ * Removes an article with the specified ID from the list of saved articles.
+ * @param {string} id - The ID of the article to remove.
+ * @param {Array} savedArticles - The array of saved articles.
+ * @returns {Promise<Array>} A promise that resolves with the updated list of articles after removal.
+ */
+export function removeArticle(id, savedArticles) {
   return new Promise((resolve, reject) => {
-    const deleteArticleUrl = `${baseUrl}/${id}`;
+    // Simulate the removal process with a delay
+    setTimeout(() => {
+      try {
+        // Filter out the article with the specified ID
+        const updatedData = savedArticles.filter(
+          (article) => article.id !== id
+        );
 
-    // Send a DELETE request to the server endpoint
-    fetch(deleteArticleUrl, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        // Check if the response indicates successful deletion (status code 204)
-        if (response.status === 204) {
-          // Resolve the Promise with a success message or any relevant data
-          resolve("Article removed successfully");
-        } else {
-          // If deletion was not successful, reject the Promise with an error message
-          reject("Error removing the article: Unexpected response from server");
-        }
-      })
-      .catch((error) => {
-        // If an error occurs during the request, reject the Promise with the error message
-        reject(`Error removing the article: ${error.message}`);
-      });
+        // Resolve the Promise with the updated data
+        resolve(updatedData);
+      } catch (error) {
+        // If an error occurs, reject the Promise with the error message
+        reject(
+          `An error occurred while removing the article: ${error.message}`
+        );
+      }
+    }, 1000); // Simulate a delay of 1 second (adjust as needed)
   });
 }

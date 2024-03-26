@@ -24,9 +24,7 @@ const NewsCardList = ({
     setVisibleCards(nextVisibleCards);
     checkAllCard();
   };
-  //   if (nextVisibleCards >= 100 || nextVisibleCards >= newsData.length) {
-  //     setIsAllCardsVisible(true);
-  //   }
+
   const checkAllCard = () => {
     if (visibleCards >= 99) {
       setIsAllCardsVisible(true);

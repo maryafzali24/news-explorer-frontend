@@ -37,6 +37,7 @@ const SearchForm = ({ handleSearchSubmit, updateKeyword }) => {
           Search
         </button>
       </fieldset>
+      <button className="search__search-mobile">Search</button>
     </form>
   );
 };

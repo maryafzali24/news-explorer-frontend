@@ -13,6 +13,7 @@ const MainPage = ({
   isSearchLoading,
   handleBook,
   updateKeyword,
+  handleMobileClick,
 }) => {
   return (
     <>
@@ -22,6 +23,9 @@ const MainPage = ({
         isLoggedIn={isLoggedIn}
         onLogOut={onLogOut}
         updateKeyword={updateKeyword}
+        handleMobileClick={handleMobileClick}
+        theme="light"
+        isHomeSctive={true}
       />
       {activeSearch && (
         <NewsCardList

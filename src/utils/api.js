@@ -1,4 +1,4 @@
-import { baseUrl } from "./constants";
+// import { baseUrl } from "./constants";
 import corgi from "../images/Corgi.png";
 import moose from "../images/Moose.png";
 
@@ -84,6 +84,6 @@ export function removeArticle(id, savedArticles) {
           `An error occurred while removing the article: ${error.message}`
         );
       }
-    }, 1000); // Simulate a delay of 1 second (adjust as needed)
+    }, 1000); // Simulate a delay of 1 second
   });
 }

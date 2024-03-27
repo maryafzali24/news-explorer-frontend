@@ -8,7 +8,7 @@ import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNews from "../SavedNews/SavedNews";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
-import { getNews } from "../../utils/newsApi";
+// import { getNews } from "../../utils/newsApi";
 import { getItems, saveArticle, removeArticle } from "../../utils/api";
 import { authorize, checkToken } from "../../utils/auth";
 import ActivePopupContext from "../../contexts/ActivePopupContext";

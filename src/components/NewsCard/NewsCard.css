@@ -1,5 +1,4 @@
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 19px;
   width: 400px;
   height: 576px;
@@ -63,15 +62,15 @@
 
 .card__popout-active {
   display: flex;
-  width: 182px;
+  width: 159px;
   height: 40px;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 1);
   position: absolute;
   top: 24px;
-  left: 149px;
+  left: 172px;
   margin: 0;
   border-radius: 10px;
-  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
+  /* box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1); */
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -79,6 +78,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  box-shadow: 0px 10px 22px 0px rgba(59, 74, 116, 0.1);
 }
 
 .card__book {
@@ -87,13 +87,10 @@
   right: 24px;
   width: 40px;
   height: 40px;
-  background-color: #fff;
   border-radius: 8px;
   padding: 0;
   border: none;
-  background-image: url(../../images/bookmark.svg);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: #fff url(../../images/bookmark.svg) center no-repeat;
 }
 
 .card__book-active:hover {
@@ -112,21 +109,18 @@
 
 .card__delete {
   position: absolute;
-  top: 24px;
-  right: 24px;
   width: 40px;
   height: 40px;
-  background-color: #fff;
   border-radius: 8px;
+  transition: 0.3s ease-in-out;
   padding: 0;
+  cursor: pointer;
   border: none;
-  background-image: url(../../images/trash.svg);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: #fff url(../../images/Trash.svg) center no-repeat;
 }
 
 .card__delete:hover {
-  cursor: pointer;
+  background: #fff url(../../images/Trash-hover.svg) center no-repeat;
 }
 
 .card__image {
@@ -188,8 +182,11 @@
   line-height: 1.25em;
   color: #b6bcbf;
   margin: auto 0 24px 24px;
-  width: fit-content;
-  justify-self: flex-end;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {

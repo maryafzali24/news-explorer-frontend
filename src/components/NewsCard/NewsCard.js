@@ -46,17 +46,12 @@ const NewsCard = ({
     if (isBooked) {
       return (
         <>
+          <p className="card__keyword">{card.keyword}</p>
+
           <p
-            className={`card__keyword ${
+            className={
               isHovered ? "card__popout-active" : "card__popout-inactive"
-            }`}
-          >
-            {card.keyword}
-          </p>
-          <p
-            className={`card__popout ${
-              isHovered ? "card__popout-active" : "card__popout-inactive"
-            }`}
+            }
           >
             Remove from saved
           </p>
@@ -87,45 +82,48 @@ const NewsCard = ({
   };
 
   return (
-    <div className="card">
-      {isVisible && (
-        <div className="card__container">
-          <Link
-            to={card.url || card.link}
-            className="card__link"
-            target="_blank"
-          >
-            <img
-              src={card.urlToImage || card.url}
-              alt={card.title}
-              className="card__image"
-            />
-          </Link>
-          {isLoggedIn ? null : (
-            <p
-              className={`card__popout ${
-                isHovered ? "card__popout-active" : "card__popout-inactive"
-              }`}
+    <>
+      <div className="card">
+        {isVisible && (
+          <div className="card__container">
+            <Link
+              to={card.url ? card.url : card.link}
+              className="card__link"
+              target="_blank"
             >
-              Sign in to save articles
-            </p>
-          )}
-          {renderSaveButton()}
-        </div>
-      )}
-      <Link
-        to={card.url || card.link}
-        className="card__text-link"
-        target="_blank"
-      >
-        <p className="card__date">
-          {(card.publishedAt || card.date).slice(0, 10)}
-        </p>
-        <h3 className="card__title">{card.title}</h3>
-        <p className="card__description">{card.description || card.text}</p>
-        <h4 className="card__publisher">{card.source.name || card.source}</h4>
-      </Link>
-    </div>
+              <img
+                src={card.urlToImage ? card.urlToImage : card.image}
+                alt={`${card.title}`}
+                className="card__image"
+              />
+            </Link>
+            {isLoggedIn ? null : (
+              <p
+                className={
+                  isHovered ? "card__popout-active" : "card__popout-inactive "
+                }
+              >
+                Sign in to save articles
+              </p>
+            )}
+            {renderSaveButton()}
+          </div>
+        )}
+
+        <Link
+          to={card.url ? card.url : card.link}
+          className="card__text-link"
+          target="_blank"
+        >
+          <p className="card__date">
+            {(card.publishedAt ? card.publishedAt : card.date).slice(0, 10)}
+          </p>
+          <h3 className="card__title">{card.title}</h3>
+          <p className="card__description">{card.description || card.text}</p>
+          <h4 className="card__publisher">{card.source.name || card.source}</h4>
+        </Link>
+      </div>
+    </>
   );
 };
 

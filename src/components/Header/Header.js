@@ -14,7 +14,7 @@ const Header = ({
   isHomeSctive,
 }) => {
   return (
-    <div className="header">
+    <header className="header">
       <NavBar
         onSignInClick={onSignInClick}
         isLoggedIn={isLoggedIn}
@@ -27,7 +27,7 @@ const Header = ({
         handleSearchSubmit={handleSearchSubmit}
         updateKeyword={updateKeyword}
       />
-    </div>
+    </header>
   );
 };
 

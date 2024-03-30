@@ -120,7 +120,7 @@
   padding: 0;
   cursor: pointer;
   border: none;
-  background: #fff url(../../images/Trash.svg) center no-repeat;
+  background: #fff url(../../images/TrashWhite.svg) center no-repeat;
 }
 
 .card__delete:hover {

@@ -21,7 +21,7 @@ const NavBar = ({
   const userData = currentUser.data ? currentUser.data : { name: "" };
 
   return (
-    <div className={`nav nav_${theme}`}>
+    <nav className={`nav nav_${theme}`}>
       <NavLink
         to="/"
         className={`nav__logo nav__link ${
@@ -36,7 +36,7 @@ const NavBar = ({
           onClick={handleMobileClick}
         />
       )}
-      <div className="nav__right">
+      <nav className="nav__right">
         <NavLink
           to="/"
           className={`nav__home nav__link ${
@@ -79,8 +79,8 @@ const NavBar = ({
             Sign in
           </button>
         )}
-      </div>
-    </div>
+      </nav>
+    </nav>
   );
 };
 

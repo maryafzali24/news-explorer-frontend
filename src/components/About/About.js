@@ -6,7 +6,7 @@ const About = () => {
     <section className="about">
       <img className="about__image" src={authorImage} alt="Maryam Afzali" />
       <div className="about__container">
-        <h2 className="about__ttile">About the author</h2>
+        <h2 className="about__title">About the author</h2>
         <p className="about__info">
           Hi, My name is Maryam Afzali, I'm full stack software engineer
           proficient in JavaScript, HTML, CSS, Node, Express, and React. I

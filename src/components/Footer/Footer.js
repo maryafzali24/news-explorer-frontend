@@ -12,12 +12,20 @@ const Footer = () => {
           <Link to="/" className="footer__link">
             <button className="footer__button footer__text">Home</button>
           </Link>
-          <Link to="https://practicum.com" className="footer__link">
+          <Link
+            to="https://practicum.com"
+            className="footer__link"
+            target="_blank"
+          >
             <button className="footer__button footer__text">Practicum</button>
           </Link>
         </nav>
         <nav className="footer__icons">
-          <Link to="http://github.com/maryafzali24" className="footer__link">
+          <Link
+            to="http://github.com/maryafzali24"
+            className="footer__link"
+            target="_blank"
+          >
             <button className="footer__button footer__github">
               <img
                 src={gitHubLogo}
@@ -29,6 +37,7 @@ const Footer = () => {
           <Link
             to="https://www.linkedin.com/in/maryam-afzal1018/"
             className="footer__link"
+            target="_blank"
           >
             <button className="footer__linkedIn footer__button">
               <img

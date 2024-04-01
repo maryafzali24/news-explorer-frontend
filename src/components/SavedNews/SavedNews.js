@@ -9,6 +9,7 @@ const SavedNews = ({
   newsCards,
   setNewsCards,
   handleDeleteArticle,
+  handleMobileClick,
 }) => {
   return (
     <>
@@ -16,6 +17,7 @@ const SavedNews = ({
         onSignInClick={onSignInClick}
         isLoggedIn={isLoggedIn}
         onLogOut={onLogOut}
+        handleMobileClick={handleMobileClick}
       />
       <NewsCardListSaved
         isLoggedIn={isLoggedIn}

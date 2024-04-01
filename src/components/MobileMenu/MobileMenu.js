@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import closeIcon from "../../images/close.svg";
 import logout from "../../images/logoutWhite.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./MobileMenu.css";
 
 export const MobileMenu = ({
@@ -11,6 +12,9 @@ export const MobileMenu = ({
   handleClosePopup,
   handleOutClick,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+
+  const userData = currentUser.data ? currentUser.data : { name: "" };
   const [loggedIn, setLoggedIn] = useState("");
   const handleLogoutClick = () => {
     handleLogout();
@@ -28,7 +32,7 @@ export const MobileMenu = ({
   return (
     <div className="menu" onClick={handleOutClick}>
       <div className={`menu__container-${loggedIn}`}>
-        <div className="menu_over">
+        <div className="menu__over">
           <Link
             to="/"
             className="menu__logo menu__link"
@@ -62,7 +66,7 @@ export const MobileMenu = ({
               Saved Articles
             </Link>
             <button className="menu__logout" onClick={handleLogoutClick}>
-              Username
+              {userData.name}
               <img
                 className="menu__logout-img"
                 src={logout}

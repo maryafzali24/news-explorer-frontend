@@ -81,6 +81,7 @@ function App() {
   };
 
   const handleMobileClick = () => {
+    console.log("handleMobileClick");
     setActivePopup("mobile");
   };
 
@@ -200,6 +201,7 @@ function App() {
                     newsCards={savedCards}
                     setNewsCards={setSavedCards}
                     handleDeleteArticle={handleDeleteArticle}
+                    handleMobileClick={handleMobileClick}
                   />
                 </ProtectedRoute>
               }

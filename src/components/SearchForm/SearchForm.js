@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import "./SearchForm.css";
 
@@ -9,18 +9,11 @@ const SearchForm = ({ handleSearchSubmit, updateKeyword }) => {
     formState: { errors },
   } = useForm();
 
-  const [searchBtnColor, setSearchBtnColor] = useState({});
-
   const onSubmit = (data) => {
     updateKeyword(data.searchs);
     handleSearchSubmit(data.searchs);
-    setSearchBtnColor("#2a65cc");
   };
-  useEffect(() => {
-    setSearchBtnColor({
-      backgroundColor: "#2f71e5",
-    });
-  }, []);
+
   return (
     <form className="search__form" onSubmit={handleSubmit(onSubmit)}>
       <fieldset className="search__fieldset">
@@ -37,12 +30,7 @@ const SearchForm = ({ handleSearchSubmit, updateKeyword }) => {
             <span className="search__errors">{errors.searchs.message}</span>
           )}
         </div>
-        <button
-          className="search__search"
-          style={{ backgroundColor: searchBtnColor }}
-        >
-          Search
-        </button>
+        <button className="search__search">Search</button>
       </fieldset>
       <button className="search__search-mobile">Search</button>
     </form>

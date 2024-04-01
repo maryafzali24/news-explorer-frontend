@@ -42,45 +42,38 @@
     margin: 0 16px 32px 16px;
   }
   .saved__title {
-    margin: 16px 16px 0 16px;
     font-family: "Roboto", sans-serif;
-    font-size: 30px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 34px;
-    width: 288px;
-  }
-  .saved__header {
-    width: 288px;
-    margin: 16px 0 32px 0;
-    font-size: 18px;
     line-height: 24px;
   }
+  .saved__header {
+    margin: 16px 0 0 0;
+    font-size: 30px;
+    line-height: 34px;
+  }
   .saved__word {
-    width: 288px;
-    margin: 50px 17px 0 15px;
+    margin: 50px 0 0 0;
     font: 18px;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .saved {
-    width: 768px;
     margin: 24px 0 0 0;
   }
   .saved__container {
-    margin: 0 40px 32px 40px;
+    margin: 0 40px 0 40px;
   }
   .saved__title {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
   }
   .saved__header {
     width: 336px;
-    margin: 16px auto 0 16px;
     font-size: 30px;
     line-height: 34px;
   }
   .saved__word {
-    width: 712px;
-    margin: 16px 16px 32px 40px;
+    font: 18px;
   }
 }

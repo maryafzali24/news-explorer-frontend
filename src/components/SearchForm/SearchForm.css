@@ -39,7 +39,7 @@
 }
 
 .search__search {
-  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  box-shadow: 0px 5px 15px 0px rgba(14, 26, 57, 0.2);
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -47,9 +47,11 @@
   border: none;
   border-radius: 100px;
   width: 168px;
-  height: 64px;
+  height: 66px;
   padding: 0;
+  background: #2f71e5;
   color: #fff;
+  text-align: center;
 }
 
 .search__search:hover {

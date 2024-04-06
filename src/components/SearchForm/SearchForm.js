@@ -16,22 +16,18 @@ const SearchForm = ({ handleSearchSubmit, updateKeyword }) => {
 
   return (
     <form className="search__form" onSubmit={handleSubmit(onSubmit)}>
-      <fieldset className="search__fieldset">
-        <div className="search__container">
-          <input
-            className="search__input"
-            type="text"
-            placeholder="Enter topic"
-            {...register("searchs", {
-              required: "Please enter a keyword",
-            })}
-          />
-          {errors.searchs && (
-            <span className="search__errors">{errors.searchs.message}</span>
-          )}
-        </div>
-        <button className="search__search">Search</button>
-      </fieldset>
+      <input
+        className="search__input"
+        type="text"
+        placeholder="Enter topic"
+        {...register("searchs", {
+          required: "Please enter a keyword",
+        })}
+      />
+      {errors.searchs && (
+        <p className="search__errors">{errors.searchs.message}</p>
+      )}
+      <button className="search__search">Search</button>
       <button className="search__search-mobile">Search</button>
     </form>
   );

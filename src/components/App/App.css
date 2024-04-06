@@ -1,12 +1,12 @@
-.page {
+/* .page {
   font-family: "Roboto", sans-serif;
   position: relative;
-  margin: 0 auto 0 auto;
-  background-color: #ffffff;
+ margin: 0 auto 0 auto;
+  background-color: #f3f3f3;
   max-width: 1440px;
-}
+} */
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+/* @media screen and (min-width: 320px) and (max-width: 767px) {
   .page {
     max-width: 320px;
   }
@@ -16,4 +16,7 @@
   .page {
     max-width: 768px;
   }
+} */
+.App {
+  margin: 0;
 }

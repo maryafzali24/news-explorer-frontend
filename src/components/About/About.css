@@ -1,59 +1,69 @@
 .about {
-  max-width: 1440px;
   display: flex;
-  margin: 80px 0 0 0;
+  background: #fff;
+  justify-content: center;
 }
 
 .about__image {
-  width: 464px;
+  max-width: 464px;
+  width: 100%;
   height: 464px;
-  border-radius: 400px;
-  margin: 0 0 80px 104px;
+  border-radius: 1000px;
+  margin: 80px 0 80px 104px;
 }
 
 .about__container {
-  width: 600px;
-  margin: 50px 0 0 56px;
-  font-weight: 400;
-  color: #1a1b22;
+  display: flex;
+  flex-direction: column;
+  margin-top: 131px;
+  margin-left: 54px;
 }
 
 .about__title {
-  font-family: "Roboto Slab", sans-serif;
+  color: var(--main-primary, #1a1b22);
+  font-family: "Roboto Slab", Arial;
   font-size: 40px;
   font-weight: 400;
-  line-height: 1.15em;
-  margin: 0;
+  line-height: 1.2;
+  margin: 0 0 24px;
 }
 
 .about__info {
+  color: #1a1b22;
   font-family: "Roboto", Arial;
   font-size: 18px;
   font-weight: 400;
-  line-height: 24px;
-  color: #1a1b22;
+  line-height: 1.2;
+  width: 600px;
   margin: 0;
 }
 
 @media screen and (min-width: 320px) and (max-width: 597px) {
   .about {
-    height: 752px;
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    margin: 32px 16px 0 16px;
+    align-items: center;
   }
+
   .about__image {
-    width: 272px;
+    max-width: 272px;
     height: 272px;
-    margin: 0 8px 0 8px;
+    margin: 32px 24px 0;
   }
+
   .about__container {
+    margin: 24px 16px 128px;
     width: 288px;
-    height: 240px;
-    margin: 24px 0 128px 0;
   }
+
   .about__title {
     font-size: 30px;
-    line-height: 40px;
+    width: 288px;
+  }
+
+  .about__info {
+    width: 288px;
   }
 }
 @media screen and (min-width: 680px) and (max-width: 767px) {
@@ -134,20 +144,27 @@
 
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
   .about {
-    max-width: 768px;
-    margin: 40px 0 0 0;
+    justify-content: center;
   }
+
   .about__image {
-    width: 232px;
-    height: 232px;
-    margin: 21px 0 61px 40px;
+    width: 324px;
+    height: 324px;
+    margin: 80px 0 80px 96px;
   }
+
   .about__container {
-    width: 424px;
-    margin: 0 0 0 32px;
+    width: 500px;
+    margin-top: 131px;
+    margin-left: 54px;
+    margin-right: 54px;
   }
+
   .about__title {
-    font-size: 30px;
-    line-height: 40px;
+    margin: 0 0 24px;
+  }
+
+  .about__info {
+    width: 500px;
   }
 }

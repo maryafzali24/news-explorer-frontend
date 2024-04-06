@@ -2,12 +2,12 @@
   border-radius: 19px;
   width: 400px;
   height: 576px;
-  background: center no-repeat;
+  /* background: center no-repeat; */
   background-color: #fff;
-  background-size: 328px;
+  /* background-size: 328px; */
   position: relative;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .card__container {
@@ -130,6 +130,8 @@
 .card__image {
   width: 400px;
   height: 272px;
+  margin: 0;
+  padding: 0;
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
 }
@@ -198,7 +200,7 @@
   left: 24px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 480px) {
   .card {
     width: 288px;
     height: 440px;
@@ -234,14 +236,15 @@
     height: 196px;
   }
   .card__date {
-    margin: 16px 16px 0 16px;
+    margin: 16px 16px 10px;
   }
   .card__title {
     width: 256px;
     font-weight: 400;
     font-size: 22px;
     line-height: 24px;
-    margin: 10px 16px 0 16px;
+    /* margin: 0 16px 0 16px; */
+    margin: 0 16px 14px;
   }
   .card__description {
     margin: 14px 16px 0 16px;
@@ -250,23 +253,84 @@
     font-weight: 400;
     line-height: 22px;
     -webkit-line-clamp: 3;
+    /* margin: 0 16px 30px; */
   }
   .card__publisher {
+    width: 256px;
+    height: 20px;
     left: 16px;
   }
 }
-
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 681px) and (max-width: 767px) {
   .card {
-    width: 224px;
-    height: 420px;
+    width: 288px;
+    height: 440px;
+  }
+
+  .card__link {
+    width: 288px;
+    height: 196px;
+  }
+
+  .card__keyword {
+    top: 16px;
+    left: 16px;
+  }
+
+  .card__popout-active {
+    top: 16px;
+    left: 16px;
+    width: 180px;
+  }
+
+  .card__book {
+    top: 16px;
+    right: 16px;
+  }
+
+  .card__delete {
+    top: 16px;
+    right: 16px;
+  }
+
+  .card__image {
+    width: 288px;
+    height: 196px;
+  }
+
+  .card__date {
+    margin: 16px 16px 0 16px;
+  }
+
+  .card__title {
+    margin: 10px 16px 0 16px;
+    width: 256px;
+    font-size: 22px;
+  }
+
+  .card__description {
+    margin: 14px 16px 0 16px;
+    width: 256px;
+    -webkit-line-clamp: 3;
+  }
+
+  .card__publisher {
+    margin-left: 0;
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 1240px) and (max-width: 1339px) {
+  .card {
+    width: 334px;
+    height: 500px;
   }
   .card__container {
     position: relative;
   }
   .card__link {
-    width: 224px;
-    height: 150px;
+    width: 334px;
+    height: 210px;
   }
   .card__placeholder {
     font-size: 18px;
@@ -282,8 +346,8 @@
     left: 8px;
   }
   .card__book {
-    top: 8px;
-    right: 8px;
+    top: 16px;
+    right: 16px;
   }
   .card__delete {
     position: absolute;
@@ -291,29 +355,28 @@
     right: 8px;
   }
   .card__image {
-    width: 224px;
-    height: 150px;
+    width: 334px;
+    height: 210px;
   }
   .card__date {
     font-size: 18px;
-    margin: 16px 0 0 15px;
+    margin: 16px 0 12px 15px;
   }
   .card__title {
-    width: 192px;
-    line-height: 1.09em;
+    width: 300px;
     font-size: 22px;
-    font-weight: 400;
-    font-family: "Roboto", sans-serif;
-    margin: 12px 0 0 15px;
     -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 300px;
+    margin: 0 16px 10px;
   }
   .card__description {
-    width: 192px;
-    margin: 10px 16px 0 16px;
     -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    width: 300px;
+    margin: 0 16px 12px;
   }
   .card__publisher {
-    /* margin: auto 16px 16 16px; */
     left: 16px;
   }
 }

@@ -7,48 +7,47 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p className="footer__copyright">@ 2024 Supersite, powered by News API</p>
-      <div className="footer__right">
-        <nav className="footer__links">
-          <Link to="/" className="footer__link">
-            <button className="footer__button footer__text">Home</button>
-          </Link>
-          <Link
-            to="https://practicum.com"
-            className="footer__link"
-            target="_blank"
-          >
-            <button className="footer__button footer__text">Practicum</button>
-          </Link>
-        </nav>
-        <nav className="footer__icons">
-          <Link
-            to="http://github.com/maryafzali24"
-            className="footer__link"
-            target="_blank"
-          >
-            <button className="footer__button footer__github">
-              <img
-                src={gitHubLogo}
-                alt="GIThub logo"
-                className="footer__github"
-              />
-            </button>
-          </Link>
-          <Link
-            to="https://www.linkedin.com/in/maryam-afzal1018/"
-            className="footer__link"
-            target="_blank"
-          >
-            <button className="footer__linkedIn footer__button">
-              <img
-                src={linkdinLogo}
-                className="footer__linkedIn"
-                alt="LinkdIn logo"
-              />
-            </button>
-          </Link>
-        </nav>
-      </div>
+      <nav className="footer__links">
+        <Link to="/" className="footer__link" id="home">
+          <p className="footer__home">Home</p>
+        </Link>
+        <Link
+          to="https://practicum.com"
+          className="footer__link"
+          target="_blank"
+          id="tripleten"
+        >
+          <p className="footer__tripleten">Practicum</p>
+        </Link>
+        <Link
+          to="http://github.com/maryafzali24"
+          className="footer__link"
+          target="_blank"
+          id="github"
+        >
+          <p className="footer__github">
+            <img
+              src={gitHubLogo}
+              alt="GIThub logo"
+              className="footer__github"
+            />
+          </p>
+        </Link>
+        <Link
+          to="https://www.linkedin.com/in/maryam-afzal1018/"
+          className="footer__link"
+          target="_blank"
+          id="linkedIn"
+        >
+          <p className="footer__linkedIn footer__button">
+            {/* <img
+              src={linkdinLogo}
+              className="footer__linkedIn"
+              alt="LinkedIn logo"
+            /> */}
+          </p>
+        </Link>
+      </nav>
     </footer>
   );
 };

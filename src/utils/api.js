@@ -19,6 +19,17 @@ export function getItems() {
           urlToImage: corgi,
         },
         {
+          keyword: "Nature",
+          title: "Everyone Needs a Special 'Sit Spot' in Nature",
+          description:
+            "Ever since I read Richard Louv's influential book, 'Last Child in the Woods,' the idea of having a special 'sit spot' has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find that the world is not what it appears to be.",
+          publishedAt: "November 4, 2020",
+          source: "TreeHugger",
+          url: corgi,
+          urlToImage: corgi,
+        },
+
+        {
           keyword: "Parks",
           title: "Grand Teton Renews Historic Crest Trail",
           description:

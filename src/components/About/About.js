@@ -1,4 +1,4 @@
-import authorImage from "../../images/maryam.jpg";
+import authorImage from "../../images/istockphoto-1252210017-1024x1024.jpg";
 import "./About.css";
 
 const About = () => {

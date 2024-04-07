@@ -2,27 +2,24 @@
   border-radius: 19px;
   width: 400px;
   height: 576px;
-  /* background: center no-repeat; */
   background-color: #fff;
-  /* background-size: 328px; */
   position: relative;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .card__container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__link {
   text-decoration: none;
   list-style-type: none;
-  text-align: center;
   height: 272px;
   width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .card__text-link {
@@ -318,6 +315,8 @@
     margin-left: 0;
     margin-bottom: 16px;
   }
+}
+@media screen and (min-width: 911px) and (max-width: 1208px) {
 }
 
 @media screen and (min-width: 1240px) and (max-width: 1339px) {

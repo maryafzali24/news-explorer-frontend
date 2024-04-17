@@ -1,9 +1,11 @@
 .nav {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-between;
   align-items: center;
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  /* box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2); */
+  border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+  filter: drop-shadow(0px -1px 0px rgb(255, 255, 255, 0.2));
   max-height: 80px;
   width: 100%;
 }
@@ -25,7 +27,6 @@
   user-select: none;
   margin: 30px 0 26px 104px;
   cursor: pointer;
-  justify-self: center;
   color: #fff;
 }
 
@@ -102,11 +103,18 @@
   cursor: pointer;
 }
 .nav__signin {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
   width: 176px;
   height: 48px;
   margin: 16px 0 16px 34px;
-  border-radius: 100px;
   color: inherit;
+  border-radius: 48px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: transparent;
 }
 
 .nav__signin:hover {
@@ -171,14 +179,13 @@
   border: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 510px) {
+@media screen and (min-width: 320px) and (max-width: 611px) {
   .nav {
     height: 56px;
-    min-height: 56px;
   }
   .nav__logo {
     font-size: 16px;
-    margin: 16px 16px;
+    margin: 16px 0 16px 16px;
   }
   .nav__right {
     display: none;
@@ -200,9 +207,9 @@
     background-image: url(../../images/burgerBlack.svg);
   }
 }
-@media screen and (min-width: 511px) and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .nav {
-    max-height: 66px;
+    max-height: 65px;
     display: flex;
     align-items: center;
   }
@@ -212,33 +219,44 @@
     margin: 22px 0 19px 40px;
   }
   .nav__right {
+    gap: 16px;
     margin: 0 40px 0 0;
   }
   .nav__home {
     margin-top: 10px;
     margin-bottom: 18px;
     margin-right: 0;
+    width: 64px;
+    height: 66px;
   }
   .nav__articles {
     font-size: 16px;
-    margin-left: 8px;
-    margin-right: 8px;
+    width: 160px;
+    height: 80px;
+    margin: 0 16px 13px 8px;
   }
   .nav__logout-button {
     width: 112px;
     height: 48px;
-    margin: 19px 16px 13px 0;
+    margin: 19px 16px 13px 8px;
   }
+  .nav__logout-image {
+    width: 20px;
+    height: 20px;
+  }
+
   .nav__signin {
-    margin: 14px 0 12px 19px;
-    width: 142px;
-    height: 57px;
+    width: 152px;
+    height: 40px;
+    font-family: "Roboto", Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 24px;
+    font-weight: 500;
+    margin: 14px 0 12px 19px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
   .nav {
     max-height: 65px;
   }
@@ -272,7 +290,7 @@
     margin: 25px 0 18px 0;
   }
 }
-@media screen and (min-width: 1024px) and (max-width: 1439px) {
+@media screen and (max-width: 1439px) {
   .nav__right {
     margin: 0 40px 0 0;
   }

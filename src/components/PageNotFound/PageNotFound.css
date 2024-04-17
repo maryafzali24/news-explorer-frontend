@@ -1,47 +1,53 @@
 .not-found {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  padding: 86px 0 80px;
+  background-color: #f5f6f7;
 }
 
 .not-found__image {
-  width: 83px;
-  height: 83px;
-  border: none;
-  margin-bottom: 32px;
-  margin-top: 86px;
+  width: 82.5px;
+  height: 82.5px;
 }
 
 .not-found__title {
   font-family: "Roboto Slab", Arial;
   font-weight: 400;
   font-size: 26px;
-  line-height: 1.2;
+  line-height: 30px;
   color: #1a1b22;
-  text-align: center;
-  margin: 0 0 16px;
+  margin: 31.5px 0 16px;
 }
 
 .not-found__text {
   font-family: "Roboto", Arial;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.2;
-  text-align: center;
+  line-height: 24px;
   color: #b6bcbf;
-  margin-bottom: 80px;
+  margin: 0;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .not-found {
-    max-width: 320px;
-    margin: 32px 0 0 0;
+    padding: 48px 0;
+  }
+
+  .not-found__title {
+    font-size: 22px;
+    line-height: 24px;
+    margin: 31.5px 0 16px;
+  }
+
+  .not-found__text {
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 320px) and (max-width: 425px) {
   .not-found {
-    max-width: 768px;
-    margin: 40px 0 0 0;
+    padding: 48px 16px;
   }
 }

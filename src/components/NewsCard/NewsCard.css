@@ -1,25 +1,31 @@
 .card {
+  /* border-radius: 25px;
+  overflow: hidden;
+  */
   border-radius: 19px;
   width: 400px;
   height: 576px;
+  background: center no-repeat;
   background-color: #fff;
+  background-size: 328px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__container {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .card__link {
   text-decoration: none;
   list-style-type: none;
+  text-align: center;
   height: 272px;
   width: 400px;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__text-link {
@@ -49,7 +55,7 @@
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.7;
   color: #000;
   font-weight: 500;
   border: none;
@@ -61,23 +67,22 @@
 
 .card__popout-active {
   display: flex;
-  width: 159px;
+  width: 182px;
   height: 40px;
   background: rgba(255, 255, 255, 1);
   position: absolute;
   top: 24px;
-  left: 172px;
+  left: 149px;
   margin: 0;
   border-radius: 10px;
-  /* box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1); */
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.2em;
+  line-height: 1.7px;
   align-items: center;
   text-align: center;
   justify-content: center;
-  box-shadow: 0px 10px 22px 0px rgba(59, 74, 116, 0.1);
+  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
 }
 
 .card__book {
@@ -127,8 +132,6 @@
 .card__image {
   width: 400px;
   height: 272px;
-  margin: 0;
-  padding: 0;
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
 }
@@ -138,10 +141,10 @@
 }
 
 .card__date {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.33em;
+  line-height: 24px;
   color: #b6bcbf;
   margin: 20px 0 0 24px;
 }
@@ -151,12 +154,12 @@
   color: #1a1b22;
   font-family: "Roboto Slab", sans-serif;
   font-size: 26px;
-  line-height: 1.15em;
+  line-height: 30px;
   font-weight: 400;
   background-color: #fff;
-  width: 352px;
+  height: 60px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -169,20 +172,21 @@
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.375em;
+  line-height: 22px;
   color: #1a1b22;
+  height: 6.9em;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 
 .card__publisher {
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto-Slab", Arial, sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 1.25em;
+  line-height: 20px;
   color: #b6bcbf;
   /* margin: auto 0 24px 24px; */
   letter-spacing: 0.4px;
@@ -192,19 +196,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   position: absolute;
-
   bottom: 0;
   left: 24px;
 }
-
-@media screen and (min-width: 320px) and (max-width: 480px) {
+/* @media screen and (min-width: 320px) and (max-width: 535px) {
   .card {
-    width: 288px;
-    height: 440px;
+    width: 100%;
   }
 
   .card__link {
-    width: 288px;
+    width: 100%;
     height: 196px;
   }
 
@@ -216,49 +217,54 @@
   .card__popout-active {
     top: 16px;
     left: 16px;
-    width: 180px;
+    
   }
 
   .card__book {
     top: 16px;
     right: 16px;
   }
+
   .card__delete {
     top: 16px;
     right: 16px;
   }
 
   .card__image {
-    width: 288px;
+    width: 100%;
     height: 196px;
   }
+
   .card__date {
-    margin: 16px 16px 10px;
+    margin: 16px 16px 0 16px;
   }
+
   .card__title {
-    width: 256px;
+    height: 48px;
     font-weight: 400;
     font-size: 22px;
     line-height: 24px;
-    /* margin: 0 16px 0 16px; */
     margin: 0 16px 14px;
   }
+
   .card__description {
-    margin: 14px 16px 0 16px;
-    width: 256px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
-    -webkit-line-clamp: 3;
-    /* margin: 0 16px 30px; */
+    margin: 14px 0 8px;
+    height: 5.5em;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
   }
+
   .card__publisher {
-    width: 256px;
-    height: 20px;
-    left: 16px;
+    bottom: -4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin: 0;
   }
-}
-@media screen and (min-width: 681px) and (max-width: 767px) {
+} */
+
+@media screen and (min-width: 320px) and (max-width: 611px) {
   .card {
     width: 288px;
     height: 440px;
@@ -312,14 +318,83 @@
   }
 
   .card__publisher {
-    margin-left: 0;
-    margin-bottom: 16px;
+    margin: auto 16px 16px 16px;
   }
 }
-@media screen and (min-width: 911px) and (max-width: 1208px) {
+
+@media screen and (max-width: 1023px) {
+  .card {
+    width: 224px;
+    min-height: 420px;
+    border-radius: 14px;
+  }
+
+  .card__link {
+    width: 224px;
+    height: 150px;
+  }
+
+  .card__placeholder {
+    font-size: 18px;
+    line-height: 1.33em;
+  }
+
+  .card__keyword {
+    top: 8px;
+    left: 8px;
+  }
+
+  .card__popout-active {
+    top: 8px;
+    left: 8px;
+    width: 160px;
+  }
+
+  .card__book {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__delete {
+    top: 8px;
+    right: 8px;
+  }
+
+  .card__image {
+    width: 224px;
+    height: 150px;
+  }
+
+  .card__date {
+    font-size: 18px;
+    margin: 16px 0 0 15px;
+  }
+
+  .card__title {
+    margin: 12px 15px 0 15px;
+    font-size: 22px;
+    line-height: 24px;
+    height: 72px;
+    -webkit-line-clamp: 3;
+  }
+
+  .card__description {
+    margin: 10px 16px 0 16px;
+    width: 192px;
+    -webkit-line-clamp: 4;
+  }
+
+  .card__publisher {
+    left: 16px;
+    bottom: -4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
 }
 
-@media screen and (min-width: 1240px) and (max-width: 1339px) {
+@media screen and (max-width: 1240px) {
   .card {
     width: 334px;
     height: 500px;
@@ -362,7 +437,6 @@
     margin: 16px 0 12px 15px;
   }
   .card__title {
-    width: 300px;
     font-size: 22px;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

@@ -262,6 +262,7 @@
   }
 
   .nav__right {
+    gap: 25px;
     margin: 0 40px 0 0;
   }
   .nav__logo {

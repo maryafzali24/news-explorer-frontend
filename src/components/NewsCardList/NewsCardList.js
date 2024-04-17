@@ -49,13 +49,13 @@ const NewsCardList = ({
   }, []);
 
   return (
-    <>
+    <section className="news">
       {isLoading ? (
         <Preloader />
       ) : isEmpty ? (
         <PageNotFound />
       ) : (
-        <section className="news">
+        <>
           <h2 className="news__header">Search Results</h2>
           <ul className="news__cards">
             {cards.slice(0, visibleCards).map((card) => (
@@ -76,9 +76,9 @@ const NewsCardList = ({
               Show more
             </button>
           )}
-        </section>
+        </>
       )}
-    </>
+    </section>
   );
 };
 

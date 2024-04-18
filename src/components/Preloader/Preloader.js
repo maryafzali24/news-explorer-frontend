@@ -1,11 +1,15 @@
 import "./Preloader.css";
 
-const Preloader = () => {
+const Preloader = ({ isLoading }) => {
   return (
-    <section className="preloader">
+    <div
+      className={`circle-preloader__container ${
+        !isLoading ? "circle-preloader__hidden" : ""
+      }`}
+    >
       <div className="circle-preloader"></div>
-      <p className="preloader__text">Searching for news...</p>
-    </section>
+      <p className="circle-preloader__description">Searching for news...</p>
+    </div>
   );
 };
 

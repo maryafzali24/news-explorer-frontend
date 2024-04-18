@@ -325,6 +325,7 @@
   .card {
     width: 224px;
     min-height: 420px;
+
     border-radius: 14px;
   }
 
@@ -384,10 +385,10 @@
   }
 
   .card__publisher {
-    left: 0px;
+    /* left: 0px; */
     bottom: -4px;
     overflow: hidden;
-    display: -webkit-box;
+    /* display: -webkit-box; */
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }

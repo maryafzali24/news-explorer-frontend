@@ -225,6 +225,36 @@
     margin: 25px 0 18px 0;
   }
 }
+@media screen and (max-width: 767px) {
+  .nav {
+    max-height: 66px;
+  }
+
+  .nav__logo {
+    font-size: 20px;
+    margin: 23px 0 18px 40px;
+  }
+  .nav__right {
+    gap: 16px;
+    margin: 0 30px 0 0;
+  }
+  .nav__home {
+    margin-top: 23px;
+  }
+
+  .nav__signin {
+    width: 112px;
+    height: 48px;
+    margin: 32px 16px 18px 0;
+  }
+  .nav__articles {
+    font-size: 16px;
+    margin: 23px 8px 8px 0;
+  }
+  .nav__logout-button {
+    margin: 35px 0 18px 0;
+  }
+}
 
 @media screen and (max-width: 611px) {
   .nav {

@@ -82,7 +82,8 @@
 }
 
 .nav__highlight-active_light {
-  box-shadow: inset 0px -3px 0px rgba(255, 255, 255, 1);
+  /* box-shadow: inset 0px -3px 0px rgba(255, 255, 255, 1); */
+  border-bottom: 3px solid var(--main-white, #fff);
 }
 
 .nav__highlight-inactive_light {
@@ -95,7 +96,8 @@
   color: rgba(26, 27, 34, 1);
 }
 .nav__highlight-active_dark {
-  box-shadow: inset 0px -3px 0px rgba(26, 27, 34, 1);
+  /* box-shadow: 0px 3px 0px 0px #000; */
+  color: red;
 }
 
 .nav__home:hover {
@@ -157,7 +159,7 @@
   align-items: center;
   width: 100px;
   height: 40px;
-  margin: 19px 0 0 32px;
+  margin: 19px 30px 0 32px;
   background-color: transparent;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -184,7 +186,7 @@
     margin: 0 40px 0 0;
   }
   .nav__logo {
-    margin: 0 0 0 40px;
+    margin: 0 0 0 80px;
   }
 }
 
@@ -198,7 +200,7 @@
     margin: 0 40px 0 0;
   }
   .nav__logo {
-    margin: 0 0 0 40px;
+    margin: 0 0 0 80px;
   }
 
   .nav__home {
@@ -224,62 +226,13 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nav {
-    max-height: 65px;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav__logo {
-    font-size: 20px;
-    margin: 22px 0 19px 40px;
-  }
-  .nav__right {
-    gap: 16px;
-    margin: 0 40px 0 0;
-  }
-  .nav__home {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 15px;
-    width: 64px;
-    height: 66px;
-  }
-  .nav__articles {
-    font-size: 16px;
-    width: 160px;
-    height: 80px;
-    margin: 0 16px 13px 8px;
-  }
-  .nav__logout-button {
-    width: 112px;
-    height: 48px;
-    margin: 19px 16px 13px 8px;
-  }
-  .nav__logout-image {
-    width: 20px;
-    height: 20px;
-  }
-
-  .nav__signin {
-    width: 152px;
-    height: 40px;
-    font-family: "Roboto", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    margin: 25px 0 12px 19px;
-  }
-}
-
 @media screen and (max-width: 611px) {
   .nav {
     height: 56px;
   }
   .nav__logo {
     font-size: 16px;
-    margin: 16px 0 16px 16px;
+    margin: 35px 0 16px 16px;
   }
   .nav__right {
     display: none;

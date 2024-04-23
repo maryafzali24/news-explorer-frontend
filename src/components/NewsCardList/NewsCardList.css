@@ -173,7 +173,7 @@
   }
 }
 
-@media screen and (min-width: 784px) and (max-width: 867px) {
+@media screen and (max-width: 867px) {
   .news__header {
     font-size: 30px;
     margin-top: 40px;
@@ -184,6 +184,10 @@
     gap: 8px;
     margin: 24px 40px 16px;
     justify-content: center;
+  }
+  .news__show {
+    margin-top: 32px;
+    margin-bottom: 40px;
   }
 }
 

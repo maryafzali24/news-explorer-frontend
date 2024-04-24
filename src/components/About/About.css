@@ -157,16 +157,18 @@
 
   .about__container {
     margin: 24px 16px 128px;
-    width: 270px;
+    width: 288px;
   }
 
   .about__title {
     font-size: 30px;
-    width: 100%;
+    /* width: 100%; */
+    width: 288px;
   }
 
   .about__info {
-    width: 100%;
+    /* width: 100%; */
     font-size: 18px;
+    width: 288px;
   }
 }

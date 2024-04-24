@@ -97,6 +97,7 @@
   .search__form {
     display: flex;
     flex-direction: column;
+    /* align-items: stretch; */
     gap: 16px;
   }
 
@@ -108,12 +109,15 @@
   .search__search {
     position: static;
     min-height: 56px;
-    width: 100%;
+    width: 288px;
+    /* width: 100%; */
+    /* width: 288px; */
   }
 
   .search__input {
     min-height: 56px;
-    width: 100%;
+    /* width: 100%; */
+    /* width: 288px; */
   }
 
   .search__errors {

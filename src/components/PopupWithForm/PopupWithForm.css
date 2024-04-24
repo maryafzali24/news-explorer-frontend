@@ -133,9 +133,11 @@
   display: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .popup {
-    align-items: flex-end;
+    align-items: normal;
+    padding: 0;
+    top: 50px;
   }
 
   .popup__fieldset {
@@ -150,7 +152,7 @@
 
   .popup__button {
     top: -40px;
-    right: 16px;
+    right: 15px;
     width: 24px;
     height: 24px;
     background-size: 100%;

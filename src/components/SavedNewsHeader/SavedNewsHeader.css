@@ -40,7 +40,7 @@
     margin: 24px 0 0 0;
   }
   .saved__container {
-    margin: 0 40px 0 80px;
+    margin: 0 40px 0 104px;
   }
   .saved__title {
     font-size: 16px;
@@ -56,13 +56,24 @@
   }
 }
 
+@media screen and (max-width: 1023px) {
+  .saved__container {
+    margin: 0 0 0 50px;
+  }
+}
 @media screen and (max-width: 767px) {
+  .saved__container {
+    margin: 0 16px 32px 32px;
+  }
+}
+
+@media screen and (max-width: 579px) {
   .saved {
     /* width: 320px; */
     margin: 8px 0 0 0;
   }
   .saved__container {
-    margin: 0 16px 32px 40px;
+    margin: 0 16px 32px 15px;
   }
   .saved__title {
     font-family: "Roboto", sans-serif;

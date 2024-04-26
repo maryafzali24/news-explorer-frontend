@@ -1,30 +1,42 @@
-export const authorize = (email, password) => {
-  const fakeEmail = "fake@example.com";
-  const fakePassword = "password123";
-  const fakeToken = "a fake token";
+import { baseUrl, processServerResponse } from "./constants";
 
-  return new Promise((resolve, reject) => {
-    if (email === fakeEmail && password === fakePassword) {
-      // If they match, resolve with a mock token
-      resolve({ token: fakeToken });
-    } else {
-      // If they don't match, reject with an error message indicating authentication failure
-      reject(new Error("Invalid email or password"));
-    }
-  });
+export const signUp = (email, password, name) => {
+  return fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name }),
+  })
+    .then((res) => processServerResponse(res))
+    .then((res) => res);
 };
 
+export const signIn = (email, password) => {
+  return fetch(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => processServerResponse(res))
+    .then((data) => {
+      if (data) {
+        localStorage.setItem("jwt", data.token);
+        return data;
+      }
+    });
+};
 export const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
-    // Check if the provided token matches the predefined fake token
-    if (token === "a fake token") {
-      // If it matches, resolve with mock user data
-      resolve({
-        data: { email: "fake@example.com", password: "password123" },
-      });
-    } else {
-      // If it doesn't match, reject with an error message indicating invalid token
-      reject(new Error("Invalid token"));
-    }
-  });
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    header: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => processServerResponse(res))
+    .then((data) => data);
 };

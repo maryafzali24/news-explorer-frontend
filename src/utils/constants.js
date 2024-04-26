@@ -1,5 +1,5 @@
 export const APIkey = "ba0711daedee46aaa6acb72bd350c0d8";
-export const baseUrl = "https://nomoreparties.co/news/v2/everything";
+export const baseUrl = "https://api.news-explorer.strangled.net";
 
 export const processServerResponse = (res) => {
   if (res.ok) {

@@ -8,9 +8,9 @@ import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNews from "../SavedNews/SavedNews";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
-// import { getNews } from "../../utils/newsApi";
-import { getItems, saveArticle, removeArticle } from "../../utils/api";
-import { authorize, checkToken } from "../../utils/auth";
+import { getNews } from "../../utils/newsApi";
+import { addArticle, getArticles, removeArticles } from "../../utils/api";
+import * as auth from "../../utils/auth";
 import ActivePopupContext from "../../contexts/ActivePopupContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedCardsContext from "../../contexts/SavedCardsContext";
@@ -29,44 +29,79 @@ function App() {
   const [keyword, updateKeyword] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(true);
   const [token, setToken] = useState("");
+
   const navigate = useNavigate();
-  const handleLogin = async (email, password) => {
-    try {
-      // Call the authorize function with the provided email and password
-      const { token } = await authorize(email, password);
 
-      // Set the token in the state
-      setToken(token);
+  const handleLogin = (email, password) => {
+    auth
+      .signIn(email, password)
+      .then((data) => {
+        if (data.token) {
+          setToken(data.token);
 
-      // Call the checkToken function to get user data
-      const user = await checkToken(token);
+          auth
+            .checkToken(data.token)
+            .then((res) => {
+              return res;
+            })
+            .then((data) => {
+              // Set the current user in the state
+              setCurrentUser(data);
+            })
+            .then(() => {
+              // Set isLoggedIn to true
+              setIsLoggedIn(true);
+            })
+            .then(() => {
+              // Navigate to the saved articles page
+              navigate("/saved-news");
+            })
+            .catch((error) => console.log(error));
 
-      // Set the current user in the state
-      setCurrentUser(user);
-
-      // Set isLoggedIn to true
-      setIsLoggedIn(true);
-
-      // Navigate to the saved articles page
-      navigate("/saved-news");
-
-      // Fetch articles using the token and set them in the state
-      const articles = await getItems(token);
-      setSavedCards(articles);
-
-      // Close any open popups
-      handleClosePopup();
-    } catch (error) {
-      console.error(error);
-      // Handle authentication error
-      setErrorMessage("Username or password is incorrect");
-      setIsLoading(false);
-    }
+          getArticles(data.token).then((data) => {
+            setSavedCards(data);
+          });
+        }
+      })
+      .then(() => {
+        handleClosePopup();
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle authentication error
+        setErrorMessage("Username or password is incorrect");
+        setIsLoading(false);
+      });
   };
+
+  const handleRegister = (email, password, name) => {
+    setIsLoading(true);
+    auth
+      .signUp(email, password, name)
+      .then((res) => {
+        if (res) {
+          setActivePopup("success");
+        } else {
+          console.log("Not registered");
+          setErrorMessage("Unsuccessful registeration");
+        }
+      })
+
+      .then(() => {
+        setActivePopup("success");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("The email is already in use");
+        setIsLoading(false);
+      });
+  };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
-    setToken("");
+    localStorage.removeItem("jwt");
     setActiveSearch(false);
     updateKeyword("");
     setSavedCards([]);
@@ -101,15 +136,16 @@ function App() {
 
     // Simulate fetching news data
     setTimeout(() => {
-      getItems()
+      getNews(input)
         .then((data) => {
-          // Assuming data is an array of news cards
-          setNewsCards(data.flat()); // Flatten the array of arrays
+          setNewsCards(data.articles);
+        })
+        .then(() => {
           setIsSearchLoading(false);
         })
+
         .catch((error) => {
-          console.error("Error fetching news:", error);
-          setIsSearchLoading(false);
+          console.error(error);
         });
     }, 1000); // Adjust the delay time as needed
   };
@@ -135,10 +171,39 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt) {
+      setToken(jwt);
+
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+          }
+          return res;
+        })
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .then(() => {
+          getArticles(jwt).then((data) => {
+            setSavedCards(data);
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
   const checkDuplicate = (card) => {
     if (!savedCards.some((c) => c.link === card.url)) {
-      saveArticle({ keyword: keyword, ...card }, token, currentUser);
-      savedCards.push(card);
+      addArticle({ keyword: keyword, ...card }, token, currentUser)
+        .then((data) => {
+          savedCards.push(data);
+        })
+        .catch((e) => console.log(e));
     }
   };
 
@@ -155,11 +220,15 @@ function App() {
   };
 
   // Function to handle article removal
-  const handleDeleteArticle = (articleId) => {
-    removeArticle(articleId, savedCards)
-      .then((updatedArticles) => {
-        setSavedCards(updatedArticles);
-        console.log("Article removed successfully");
+  const handleDeleteArticle = (id, card) => {
+    removeArticles(id, token)
+      .then(() => {
+        savedCards.splice(
+          savedCards.findIndex(
+            (c) => c.link === card.link || c.link === card.url
+          ),
+          1
+        );
       })
       .catch((error) => {
         console.error("Error removing article:", error);
@@ -214,7 +283,7 @@ function App() {
                 handleClosePopup={handleClosePopup}
                 handleOutClick={handleOutClick}
                 handleLogin={handleLogin}
-                handleSignupClick={handleSignInClick}
+                handleRegister={handleRegister}
                 isLoading={isLoading}
                 errorMessage={errorMessage}
                 setErrorMessage={setErrorMessage}

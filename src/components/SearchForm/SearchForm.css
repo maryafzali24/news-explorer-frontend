@@ -1,0 +1,128 @@
+.search__form {
+  display: flex;
+  height: 66px;
+  position: relative;
+}
+
+.search__form-container {
+  width: 608px;
+  max-width: 100%;
+  position: relative;
+}
+
+.search__input {
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  padding: 0;
+  border-radius: 100px;
+  color: #000;
+  height: 100%;
+  fill: #fff;
+  text-indent: 24px;
+  width: 100%;
+}
+
+.search__search {
+  position: absolute;
+  right: 0;
+  box-shadow: 0px 5px 15px 0px rgba(14, 26, 57, 0.2);
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33em;
+  border: none;
+  border-radius: 100px;
+  min-width: 168px;
+  height: 100%;
+  border-radius: 100px;
+  background: #2f71e5;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search__search:hover {
+  cursor: pointer;
+  background-color: #347eff;
+}
+
+.search__search:active {
+  background-color: #2a65cc;
+}
+
+.search__input::placeholder {
+  color: #b6bcbf;
+  font-family: "Roboto", Arial;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.search__input:focus {
+  outline: none;
+}
+.search__errors {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2em;
+  color: #ff0000;
+  position: absolute;
+  bottom: -7px;
+  left: 23px;
+}
+
+@media screen and (max-width: 1439px) {
+  .search__form-container {
+    width: 448px;
+    max-width: 100%;
+  }
+  .search__form {
+    height: 56px;
+  }
+  .search__input {
+    width: 100%;
+  }
+  .search__search {
+    width: 168px;
+    min-width: 168px;
+  }
+}
+
+@media screen and (max-width: 579px) {
+  .search__form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
+    gap: 16px;
+  }
+
+  .search__form-container {
+    width: 288px;
+    margin-bottom: 60px;
+  }
+
+  .search__search {
+    position: static;
+    min-height: 56px;
+    width: 288px;
+    /* width: 100%; */
+    /* width: 288px; */
+  }
+
+  .search__input {
+    min-height: 56px;
+    /* width: 100%; */
+    /* width: 288px; */
+  }
+
+  .search__errors {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+  }
+}

@@ -1,5 +1,6 @@
 {
   "name": "news-explorer-frontend",
+  "homepage": "https://news-explorer.strangled.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "npm run build && scp -r ./build/* mary.afzali24@news-explorer.strangled.net:/home/mary.afzali24/frontend"
   },
   "eslintConfig": {
     "extends": [

@@ -19,5 +19,3 @@ export const getLastWeekDate = () => {
   lastWeekDate.setDate(currentDate.getDate() - 7);
   return lastWeekDate.toDateString();
 };
-
-// "https://newsapi.org/v2/everything";

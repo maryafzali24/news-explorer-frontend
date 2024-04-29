@@ -73,6 +73,9 @@ function App() {
         setIsLoading(false);
       });
   };
+  const handleSuccessPopup = () => {
+    setActivePopup("success");
+  };
 
   const handleRegister = (email, password, name) => {
     setIsLoading(true);
@@ -80,7 +83,7 @@ function App() {
       .signUp(email, password, name)
       .then((res) => {
         if (res) {
-          setActivePopup("success");
+          handleSuccessPopup();
         } else {
           console.log("Not registered");
           setErrorMessage("Unsuccessful registeration");
@@ -88,7 +91,7 @@ function App() {
       })
 
       .then(() => {
-        setActivePopup("success");
+        handleSuccessPopup();
         setIsLoading(false);
       })
       .catch((error) => {
@@ -98,6 +101,23 @@ function App() {
       });
   };
 
+  // function handleRegister({ email, password, name }) {
+  //   setIsLoading(true);
+  //   auth
+  //     .signUp({ email, password, name })
+  //     .then((res) => {
+  //       if (res) {
+  //         handleClosePopup();
+  //         handleSuccessPopup();
+  //         setErrorMessage("");
+  //       } else {
+  //         setErrorMessage({ conflictError: "This email is not available" });
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.error(`Error signing user up. Error: ${e}`);
+  //     });
+  // }
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});

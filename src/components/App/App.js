@@ -36,7 +36,6 @@ function App() {
     auth
       .signin(email, password)
       .then((data) => {
-        // localStorage.setItem("jwt", data.token);
         if (data.token) {
           setToken(data.token);
 
@@ -54,6 +53,7 @@ function App() {
               setIsLoggedIn(true);
             })
             .then(() => {
+              console.log("saved-news");
               // Navigate to the saved articles page
               navigate("/saved-news");
             })

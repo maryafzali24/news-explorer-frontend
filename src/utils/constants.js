@@ -4,8 +4,6 @@ export const baseUrl =
     ? "https://api.news-explorer.strangled.net"
     : "http://localhost:3001";
 
-// export const baseUrl = "https://api.news-explorer.strangled.net";
-
 export const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();

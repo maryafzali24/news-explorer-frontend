@@ -34,8 +34,9 @@ function App() {
 
   const handleLogin = (email, password) => {
     auth
-      .signIn(email, password)
+      .signin(email, password)
       .then((data) => {
+        // localStorage.setItem("jwt", data.token);
         if (data.token) {
           setToken(data.token);
 
@@ -78,10 +79,13 @@ function App() {
   };
 
   const handleRegister = (email, password, name) => {
+    console.log(1);
+    console.log(email, password, name);
     setIsLoading(true);
     auth
-      .signUp(email, password, name)
+      .signup(email, password, name)
       .then((res) => {
+        console.log(4);
         if (res) {
           handleSuccessPopup();
         } else {
@@ -91,6 +95,7 @@ function App() {
       })
 
       .then(() => {
+        console.log(5);
         handleSuccessPopup();
         setIsLoading(false);
       })
@@ -128,6 +133,7 @@ function App() {
   };
 
   const handleSignInClick = () => {
+    console.log(1231313123);
     setActivePopup("signin");
   };
 
@@ -302,7 +308,7 @@ function App() {
               <SignUpPopup
                 handleClosePopup={handleClosePopup}
                 handleOutClick={handleOutClick}
-                handleLogin={handleLogin}
+                handleLoginClick={handleSignInClick}
                 handleRegister={handleRegister}
                 isLoading={isLoading}
                 errorMessage={errorMessage}
@@ -322,9 +328,9 @@ function App() {
             )}
             {activePopup === "success" && (
               <ConfirmationPopup
-                onClose={handleClosePopup}
                 handleOutClick={handleOutClick}
                 handleLoginClick={handleSignInClick}
+                handleClosePopup={handleClosePopup}
               ></ConfirmationPopup>
             )}
             {activePopup === "mobile" && (

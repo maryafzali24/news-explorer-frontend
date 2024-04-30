@@ -1,8 +1,10 @@
 export const APIkey = "ba0711daedee46aaa6acb72bd350c0d8";
-export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.news-explorer.strangled.net"
-    : "http://localhost:3000";
+// export const baseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://api.news-explorer.strangled.net"
+//     : "http://localhost:3000";
+
+export const baseUrl = "https://api.news-explorer.strangled.net";
 
 export const processServerResponse = (res) => {
   if (res.ok) {

@@ -31,7 +31,6 @@ function App() {
   const [token, setToken] = useState("");
 
   const navigate = useNavigate();
-
   const handleLogin = (email, password) => {
     auth
       .signin(email, password)
@@ -45,19 +44,16 @@ function App() {
               return res;
             })
             .then((data) => {
-              // Set the current user in the state
               setCurrentUser(data);
             })
             .then(() => {
-              // Set isLoggedIn to true
+              console.log("logged in");
               setIsLoggedIn(true);
             })
             .then(() => {
-              console.log("saved-news");
-              // Navigate to the saved articles page
               navigate("/saved-news");
             })
-            .catch((error) => console.log(error));
+            .catch((err) => console.log(err));
 
           getArticles(data.token).then((data) => {
             setSavedCards(data);
@@ -67,13 +63,13 @@ function App() {
       .then(() => {
         handleClosePopup();
       })
-      .catch((error) => {
-        console.error(error);
-        // Handle authentication error
+      .catch((err) => {
+        console.log(err);
         setErrorMessage("Username or password is incorrect");
         setIsLoading(false);
       });
   };
+
   const handleSuccessPopup = () => {
     setActivePopup("success");
   };

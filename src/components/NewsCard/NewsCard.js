@@ -42,17 +42,6 @@ const NewsCard = ({
     );
   };
 
-  // React.useEffect(() => {
-  //   if (card.urlToImage === null || card.image === null) {
-  //     card.urlToImage =
-  //       "https://cdn.discordapp.com/attachments/486264193402798080/1116950882626588783/image.png";
-  //     card.image =
-  //       "https://cdn.discordapp.com/attachments/486264193402798080/1116950882626588783/image.png";
-  //   }
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   React.useEffect(() => {
     if (newsCards.some((c) => c.link === card.url || c.link === card.link)) {
       setIsSaved(true);
@@ -123,7 +112,9 @@ const NewsCard = ({
             target="_blank"
           >
             <p className="card__date">
-              {(card.publishedAt ? card.publishedAt : card.date).slice(0, 10)}
+              {card.publishedAt
+                ? card.publishedAt.substring(0, 10)
+                : card.date.substring(0, 10)}
             </p>
             <h3 className="card__title">{card.title}</h3>
             <p className="card__description">

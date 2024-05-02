@@ -207,7 +207,7 @@ function App() {
     if (!savedCards.some((c) => c.link === card.url)) {
       addArticle({ keyword: keyword, ...card }, token, currentUser)
         .then((data) => {
-          savedCards.push(data);
+          savedCards.push(data.data);
         })
         .catch((e) => console.log(e));
     }

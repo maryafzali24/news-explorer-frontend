@@ -112,14 +112,16 @@ const NewsCard = ({
             target="_blank"
           >
             <p className="card__date">
-              {card.publishedAt ? card.publishedAt : card.date}
+              {card.publishedAt
+                ? card.publishedAt.slice(0, 10)
+                : card.date.slice(0, 10)}
             </p>
             <h3 className="card__title">{card.title}</h3>
             <p className="card__description">
               {card.description ? card.description : card.text}
             </p>
             <h4 className="card__publisher">
-              {card.source.name ? card.source.name : card.source}
+              {card.source?.name ? card.source.name : card.source}
             </h4>
           </Link>
         </div>

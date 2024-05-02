@@ -14,6 +14,7 @@ import * as auth from "../../utils/auth";
 import ActivePopupContext from "../../contexts/ActivePopupContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedCardsContext from "../../contexts/SavedCardsContext";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import "./App.css";
 
@@ -102,23 +103,6 @@ function App() {
       });
   };
 
-  // function handleRegister({ email, password, name }) {
-  //   setIsLoading(true);
-  //   auth
-  //     .signUp({ email, password, name })
-  //     .then((res) => {
-  //       if (res) {
-  //         handleClosePopup();
-  //         handleSuccessPopup();
-  //         setErrorMessage("");
-  //       } else {
-  //         setErrorMessage({ conflictError: "This email is not available" });
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.error(`Error signing user up. Error: ${e}`);
-  //     });
-  // }
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
@@ -258,90 +242,93 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <CurrentUserContext.Provider value={currentUser}>
-        <ActivePopupContext.Provider value={activePopup}>
-          <SavedCardsContext.Provider value={savedCards}>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  <MainPage
-                    onSignInClick={handleSignInClick}
-                    handleSearchSubmit={handleSearchSubmit}
-                    isLoggedIn={isLoggedIn}
-                    onLogOut={handleLogout}
-                    handleSignupClick={handleSignupClick}
-                    activeSearch={activeSearch}
-                    cards={newsCards}
-                    isSearchLoading={isSearchLoading}
-                    handleBook={handleBook}
-                    updateKeyword={updateKeyword}
-                    handleMobileClick={handleMobileClick}
-                  />
-                }
-              />
-              <Route
-                path="/saved-news"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SavedNews
+    <ErrorBoundary>
+      <div className="page">
+        <CurrentUserContext.Provider value={currentUser}>
+          <ActivePopupContext.Provider value={activePopup}>
+            <SavedCardsContext.Provider value={savedCards}>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <MainPage
                       onSignInClick={handleSignInClick}
+                      handleSearchSubmit={handleSearchSubmit}
                       isLoggedIn={isLoggedIn}
                       onLogOut={handleLogout}
-                      newsCards={savedCards}
-                      setNewsCards={setSavedCards}
-                      handleDeleteArticle={handleDeleteArticle}
+                      handleSignupClick={handleSignupClick}
+                      activeSearch={activeSearch}
+                      cards={newsCards}
+                      isSearchLoading={isSearchLoading}
+                      handleBook={handleBook}
+                      updateKeyword={updateKeyword}
                       handleMobileClick={handleMobileClick}
                     />
-                  </ProtectedRoute>
-                }
-              ></Route>
-            </Routes>
-            <Footer />
-            {activePopup === "signup" && (
-              <SignUpPopup
-                handleClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-                handleLoginClick={handleSignInClick}
-                handleRegister={handleRegister}
-                isLoading={isLoading}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            )}
-            {activePopup === "signin" && (
-              <SignInPopup
-                hanldeClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-                handleLogin={handleLogin}
-                handleSignupClick={handleSignupClick}
-                isLoading={isLoading}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            )}
-            {activePopup === "success" && (
-              <ConfirmationPopup
-                handleOutClick={handleOutClick}
-                handleLoginClick={handleSignInClick}
-                handleClosePopup={handleClosePopup}
-              ></ConfirmationPopup>
-            )}
-            {activePopup === "mobile" && (
-              <MobileMenu
-                onSignInClick={handleSignInClick}
-                isLoggedIn={isLoggedIn}
-                handleLogout={handleLogout}
-                handleClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-              />
-            )}
-          </SavedCardsContext.Provider>
-        </ActivePopupContext.Provider>
-      </CurrentUserContext.Provider>
-    </div>
+                  }
+                />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      <SavedNews
+                        onSignInClick={handleSignInClick}
+                        isLoggedIn={isLoggedIn}
+                        onLogOut={handleLogout}
+                        newsCards={savedCards}
+                        setNewsCards={setSavedCards}
+                        token={token}
+                        handleDeleteArticle={handleDeleteArticle}
+                        handleMobileClick={handleMobileClick}
+                      />
+                    </ProtectedRoute>
+                  }
+                ></Route>
+              </Routes>
+              <Footer />
+              {activePopup === "signup" && (
+                <SignUpPopup
+                  handleClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                  handleLoginClick={handleSignInClick}
+                  handleRegister={handleRegister}
+                  isLoading={isLoading}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                />
+              )}
+              {activePopup === "signin" && (
+                <SignInPopup
+                  hanldeClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                  handleLogin={handleLogin}
+                  handleSignupClick={handleSignupClick}
+                  isLoading={isLoading}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                />
+              )}
+              {activePopup === "success" && (
+                <ConfirmationPopup
+                  handleOutClick={handleOutClick}
+                  handleLoginClick={handleSignInClick}
+                  handleClosePopup={handleClosePopup}
+                ></ConfirmationPopup>
+              )}
+              {activePopup === "mobile" && (
+                <MobileMenu
+                  onSignInClick={handleSignInClick}
+                  isLoggedIn={isLoggedIn}
+                  handleLogout={handleLogout}
+                  handleClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                />
+              )}
+            </SavedCardsContext.Provider>
+          </ActivePopupContext.Provider>
+        </CurrentUserContext.Provider>
+      </div>
+    </ErrorBoundary>
   );
 }
 

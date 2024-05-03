@@ -8,12 +8,13 @@ import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNews from "../SavedNews/SavedNews";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
-// import { getNews } from "../../utils/newsApi";
-import { getItems, saveArticle, removeArticle } from "../../utils/api";
-import { authorize, checkToken } from "../../utils/auth";
+import { getNews } from "../../utils/newsApi";
+import { addArticle, getArticles, removeArticles } from "../../utils/api";
+import * as auth from "../../utils/auth";
 import ActivePopupContext from "../../contexts/ActivePopupContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SavedCardsContext from "../../contexts/SavedCardsContext";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import "./App.css";
 
@@ -29,50 +30,90 @@ function App() {
   const [keyword, updateKeyword] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(true);
   const [token, setToken] = useState("");
+
   const navigate = useNavigate();
-  const handleLogin = async (email, password) => {
-    try {
-      // Call the authorize function with the provided email and password
-      const { token } = await authorize(email, password);
+  const handleLogin = (email, password) => {
+    auth
+      .signin(email, password)
+      .then((data) => {
+        if (data.token) {
+          setToken(data.token);
 
-      // Set the token in the state
-      setToken(token);
+          auth
+            .checkToken(data.token)
+            .then((res) => {
+              return res;
+            })
+            .then((data) => {
+              setCurrentUser(data);
+            })
+            .then(() => {
+              console.log("logged in");
+              setIsLoggedIn(true);
+            })
+            .then(() => {
+              navigate("/saved-news");
+            })
+            .catch((err) => console.log(err));
 
-      // Call the checkToken function to get user data
-      const user = await checkToken(token);
-
-      // Set the current user in the state
-      setCurrentUser(user);
-
-      // Set isLoggedIn to true
-      setIsLoggedIn(true);
-
-      // Navigate to the saved articles page
-      navigate("/saved-news");
-
-      // Fetch articles using the token and set them in the state
-      const articles = await getItems(token);
-      setSavedCards(articles);
-
-      // Close any open popups
-      handleClosePopup();
-    } catch (error) {
-      console.error(error);
-      // Handle authentication error
-      setErrorMessage("Username or password is incorrect");
-      setIsLoading(false);
-    }
+          getArticles(data.token).then((data) => {
+            setSavedCards(data);
+          });
+        }
+      })
+      .then(() => {
+        handleClosePopup();
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage("Username or password is incorrect");
+        setIsLoading(false);
+      });
   };
+
+  const handleSuccessPopup = () => {
+    setActivePopup("success");
+  };
+
+  const handleRegister = (email, password, name) => {
+    console.log(1);
+    console.log(email, password, name);
+    setIsLoading(true);
+    auth
+      .signup(email, password, name)
+      .then((res) => {
+        console.log(4);
+        if (res) {
+          handleSuccessPopup();
+        } else {
+          console.log("Not registered");
+          setErrorMessage("Unsuccessful registeration");
+        }
+      })
+
+      .then(() => {
+        console.log(5);
+        handleSuccessPopup();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage("The email is already in use");
+        setIsLoading(false);
+      });
+  };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
-    setToken("");
+    localStorage.removeItem("jwt");
     setActiveSearch(false);
     updateKeyword("");
     setSavedCards([]);
   };
 
   const handleSignInClick = () => {
+    console.log(1231313123);
     setActivePopup("signin");
   };
 
@@ -101,14 +142,14 @@ function App() {
 
     // Simulate fetching news data
     setTimeout(() => {
-      getItems()
+      getNews(input)
         .then((data) => {
-          // Assuming data is an array of news cards
-          setNewsCards(data.flat()); // Flatten the array of arrays
-          setIsSearchLoading(false);
+          setNewsCards(data.articles);
         })
         .catch((error) => {
-          console.error("Error fetching news:", error);
+          console.error(error);
+        })
+        .finally(() => {
           setIsSearchLoading(false);
         });
     }, 1000); // Adjust the delay time as needed
@@ -135,10 +176,39 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt) {
+      setToken(jwt);
+
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+          }
+          return res;
+        })
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .then(() => {
+          getArticles(jwt).then((data) => {
+            setSavedCards(data);
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
   const checkDuplicate = (card) => {
     if (!savedCards.some((c) => c.link === card.url)) {
-      saveArticle({ keyword: keyword, ...card }, token, currentUser);
-      savedCards.push(card);
+      addArticle({ keyword: keyword, ...card }, token, currentUser)
+        .then((data) => {
+          savedCards.push(data.data);
+        })
+        .catch((e) => console.log(e));
     }
   };
 
@@ -155,11 +225,15 @@ function App() {
   };
 
   // Function to handle article removal
-  const handleDeleteArticle = (articleId) => {
-    removeArticle(articleId, savedCards)
-      .then((updatedArticles) => {
-        setSavedCards(updatedArticles);
-        console.log("Article removed successfully");
+  const handleDeleteArticle = (id, card) => {
+    removeArticles(id, token)
+      .then(() => {
+        savedCards.splice(
+          savedCards.findIndex(
+            (c) => c.link === card.link || c.link === card.url
+          ),
+          1
+        );
       })
       .catch((error) => {
         console.error("Error removing article:", error);
@@ -167,90 +241,93 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <CurrentUserContext.Provider value={currentUser}>
-        <ActivePopupContext.Provider value={activePopup}>
-          <SavedCardsContext.Provider value={savedCards}>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  <MainPage
-                    onSignInClick={handleSignInClick}
-                    handleSearchSubmit={handleSearchSubmit}
-                    isLoggedIn={isLoggedIn}
-                    onLogOut={handleLogout}
-                    handleSignupClick={handleSignupClick}
-                    activeSearch={activeSearch}
-                    cards={newsCards}
-                    isSearchLoading={isSearchLoading}
-                    handleBook={handleBook}
-                    updateKeyword={updateKeyword}
-                    handleMobileClick={handleMobileClick}
-                  />
-                }
-              />
-              <Route
-                path="/saved-news"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SavedNews
+    <ErrorBoundary>
+      <div className="page">
+        <CurrentUserContext.Provider value={currentUser}>
+          <ActivePopupContext.Provider value={activePopup}>
+            <SavedCardsContext.Provider value={savedCards}>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <MainPage
                       onSignInClick={handleSignInClick}
+                      handleSearchSubmit={handleSearchSubmit}
                       isLoggedIn={isLoggedIn}
                       onLogOut={handleLogout}
-                      newsCards={savedCards}
-                      setNewsCards={setSavedCards}
-                      handleDeleteArticle={handleDeleteArticle}
+                      handleSignupClick={handleSignupClick}
+                      activeSearch={activeSearch}
+                      cards={newsCards}
+                      isSearchLoading={isSearchLoading}
+                      handleBook={handleBook}
+                      updateKeyword={updateKeyword}
                       handleMobileClick={handleMobileClick}
                     />
-                  </ProtectedRoute>
-                }
-              ></Route>
-            </Routes>
-            <Footer />
-            {activePopup === "signup" && (
-              <SignUpPopup
-                handleClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-                handleLogin={handleLogin}
-                handleSignupClick={handleSignInClick}
-                isLoading={isLoading}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            )}
-            {activePopup === "signin" && (
-              <SignInPopup
-                hanldeClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-                handleLogin={handleLogin}
-                handleSignupClick={handleSignupClick}
-                isLoading={isLoading}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            )}
-            {activePopup === "success" && (
-              <ConfirmationPopup
-                onClose={handleClosePopup}
-                handleOutClick={handleOutClick}
-                handleLoginClick={handleSignInClick}
-              ></ConfirmationPopup>
-            )}
-            {activePopup === "mobile" && (
-              <MobileMenu
-                onSignInClick={handleSignInClick}
-                isLoggedIn={isLoggedIn}
-                handleLogout={handleLogout}
-                handleClosePopup={handleClosePopup}
-                handleOutClick={handleOutClick}
-              />
-            )}
-          </SavedCardsContext.Provider>
-        </ActivePopupContext.Provider>
-      </CurrentUserContext.Provider>
-    </div>
+                  }
+                />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      <SavedNews
+                        onSignInClick={handleSignInClick}
+                        isLoggedIn={isLoggedIn}
+                        onLogOut={handleLogout}
+                        newsCards={savedCards}
+                        setNewsCards={setSavedCards}
+                        token={token}
+                        handleDeleteArticle={handleDeleteArticle}
+                        handleMobileClick={handleMobileClick}
+                      />
+                    </ProtectedRoute>
+                  }
+                ></Route>
+              </Routes>
+              <Footer />
+              {activePopup === "signup" && (
+                <SignUpPopup
+                  handleClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                  handleLoginClick={handleSignInClick}
+                  handleRegister={handleRegister}
+                  isLoading={isLoading}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                />
+              )}
+              {activePopup === "signin" && (
+                <SignInPopup
+                  hanldeClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                  handleLogin={handleLogin}
+                  handleSignupClick={handleSignupClick}
+                  isLoading={isLoading}
+                  errorMessage={errorMessage}
+                  setErrorMessage={setErrorMessage}
+                />
+              )}
+              {activePopup === "success" && (
+                <ConfirmationPopup
+                  handleOutClick={handleOutClick}
+                  handleLoginClick={handleSignInClick}
+                  handleClosePopup={handleClosePopup}
+                ></ConfirmationPopup>
+              )}
+              {activePopup === "mobile" && (
+                <MobileMenu
+                  onSignInClick={handleSignInClick}
+                  isLoggedIn={isLoggedIn}
+                  handleLogout={handleLogout}
+                  handleClosePopup={handleClosePopup}
+                  handleOutClick={handleOutClick}
+                />
+              )}
+            </SavedCardsContext.Provider>
+          </ActivePopupContext.Provider>
+        </CurrentUserContext.Provider>
+      </div>
+    </ErrorBoundary>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
-// import { getItems } from "../../utils/api";
+import { getArticles } from "../../utils/api";
+
 import "./NewsCardList.css";
 const NewsCardListSaved = ({
   isLoggedIn,
@@ -8,21 +9,20 @@ const NewsCardListSaved = ({
   setNewsCards,
   handleDeleteArticle,
 }) => {
-  // const [newsCards, setNewsCards] = useState([]);
+  React.useEffect(() => {
+    // Fetch articles when the component mounts
+    getArticles()
+      .then((items) => {
+        // Set the fetched articles in the state
+        setNewsCards(items);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error fetching articles:", error);
+      });
+  }, []); // Empty dependency array to fetch data only once when the component mounts
 
-  // useEffect(() => {
-  //   // Fetch articles when the component mounts
-  //   getItems()
-  //     .then((items) => {
-  //       // Set the fetched articles in the state
-  //       setNewsCards(items);
-  //     })
-  //     .catch((error) => {
-  //       // Handle errors
-  //       console.error("Error fetching articles:", error);
-  //     });
-  // }, []); // Empty dependency array to fetch data only once when the component mounts
-
+  console.log(newsCards);
   return (
     <section className="news">
       <ul className="news__cards">

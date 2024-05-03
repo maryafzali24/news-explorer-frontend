@@ -70,7 +70,6 @@ const NewsCardList = ({
               />
             ))}
           </ul>
-          {/* {!isAllCardsVisible && visibleCards < 100 && visibleCards < newsCards.length && */}
           {isAllCardsVisible ? null : (
             <button className="news__show" onClick={handleShowMore}>
               Show more

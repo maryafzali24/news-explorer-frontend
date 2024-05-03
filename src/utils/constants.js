@@ -1,5 +1,8 @@
 export const APIkey = "ba0711daedee46aaa6acb72bd350c0d8";
-export const baseUrl = "https://nomoreparties.co/news/v2/everything";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.news-explorer.strangled.net"
+    : "http://localhost:3001";
 
 export const processServerResponse = (res) => {
   if (res.ok) {
@@ -16,5 +19,3 @@ export const getLastWeekDate = () => {
   lastWeekDate.setDate(currentDate.getDate() - 7);
   return lastWeekDate.toDateString();
 };
-
-// "https://newsapi.org/v2/everything";

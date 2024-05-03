@@ -3,17 +3,10 @@ import {
   getCurrentDate,
   getLastWeekDate,
   APIkey,
-  baseUrl,
 } from "./constants";
 
 export const getNews = (input) => {
   return fetch(
-    `${baseUrl}?q=${input}&apiKey=${APIkey}&from=${getLastWeekDate}&to=${getCurrentDate}&pageSize=100`,
-    {
-      method: "GET",
-      headers: {
-        authorization: APIkey,
-      },
-    }
+    `https://nomoreparties.co/news/v2/everything?q=${input}&apiKey=${APIkey}&from=${getLastWeekDate}&to=${getCurrentDate}&pageSize=100`
   ).then((res) => processServerResponse(res));
 };

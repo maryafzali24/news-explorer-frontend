@@ -6,6 +6,7 @@ const SignUpPopup = ({
   handleClosePopup,
   handleOutClick,
   handleLoginClick,
+  handleRegister,
   isLoading,
   errorMessage,
   setErrorMessage,
@@ -21,9 +22,8 @@ const SignUpPopup = ({
     formState: { errors, isValid },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    handleClosePopup();
+  const onSubmit = ({ email, password, name }) => {
+    handleRegister(email, password, name);
   };
 
   return (

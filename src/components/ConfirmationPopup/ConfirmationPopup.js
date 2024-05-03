@@ -10,12 +10,7 @@ const ConfirmationPopup = ({
   return (
     <div className="popup__confirm-container" onClick={handleOutClick}>
       <div className="popup__confirmation">
-        <button
-          className="popup__button"
-          type="button"
-          aria-label="close"
-          // onClick={handleClosePopup}
-        >
+        <button className="popup__button" type="button" aria-label="close">
           <img
             src={closeBtn}
             className="popup__close"

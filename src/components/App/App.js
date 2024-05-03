@@ -146,12 +146,11 @@ function App() {
         .then((data) => {
           setNewsCards(data.articles);
         })
-        .then(() => {
-          setIsSearchLoading(false);
-        })
-
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          setIsSearchLoading(false);
         });
     }, 1000); // Adjust the delay time as needed
   };
